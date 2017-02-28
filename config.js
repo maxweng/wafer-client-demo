@@ -12,7 +12,7 @@ var config = {
         host,
 
         // 登录地址，用于建立会话
-        loginUrl: `http://${host}/wechat/wxliteapp_login`,
+        loginUrl: `http://${host}/wechat/wxapp_login`,
 
         // 测试的请求地址，用于测试会话
         requestUrl: `http://${host}/identities/profiles/?me=1`,
