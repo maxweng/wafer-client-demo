@@ -2,8 +2,8 @@
  * @fileOverview 演示会话服务和 WebSocket 信道服务的使用方式
  */
 
-// 引入 QCloud 小程序增强 SDK
-var qcloud = require('../../vendor/qcloud-weapp-client-sdk/index');
+// 引入 微信小程序客户端 SDK
+var mbs = require('../../vendor/wxapp-client-sdk/index');
 
 // 引入配置
 var config = require('../../config');
@@ -58,8 +58,8 @@ Page({
     doLogin() {
         showBusy('正在登录');
 
-        // 登录之前需要调用 qcloud.setLoginUrl() 设置登录地址，不过我们在 app.js 的入口里面已经调用过了，后面就不用再调用了
-        qcloud.login({
+        // 登录之前需要调用 mbs.setLoginUrl() 设置登录地址，不过我们在 app.js 的入口里面已经调用过了，后面就不用再调用了
+        mbs.login({
             success(result) {
                 showSuccess('登录成功');
                 console.log('登录成功', result);
@@ -77,7 +77,7 @@ Page({
      */
     clearSession() {
         // 清除保存在 storage 的会话信息
-        qcloud.clearSession();
+        mbs.clearSession();
         showSuccess('会话已清除');
     },
 
@@ -87,8 +87,8 @@ Page({
     doRequest() {
         showBusy('正在请求');
 
-        // qcloud.request() 方法和 wx.request() 方法使用是一致的，不过如果用户已经登录的情况下，会把用户的会话信息带给服务器，服务器可以跟踪用户
-        qcloud.request({
+        // mbs.request() 方法和 wx.request() 方法使用是一致的，不过如果用户已经登录的情况下，会把用户的会话信息带给服务器，服务器可以跟踪用户
+        mbs.request({
             // 要请求的地址
             url: this.data.requestUrl,
 
@@ -127,7 +127,7 @@ Page({
      */
     openTunnel() {
         // 创建信道，需要给定后台服务地址
-        var tunnel = this.tunnel = new qcloud.Tunnel(this.data.tunnelUrl);
+        var tunnel = this.tunnel = new mbs.Tunnel(this.data.tunnelUrl);
 
         // 监听信道内置消息，包括 connect/close/reconnecting/reconnect/error
         tunnel.on('connect', () => {

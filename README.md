@@ -41,7 +41,7 @@ Demo
 │       ├── index.wxml
 │       └── index.wxss
 └── vendor
-    └── qcloud-weapp-client-sdk/
+    └── wxapp-client-sdk/
 ```
 
 `app.js` 是小程序入口文件。
